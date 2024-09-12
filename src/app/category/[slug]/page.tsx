@@ -2,15 +2,15 @@ import SelectCategory from "@/components/selectcategory";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function Page() {
+export default async function Page({ params }: { params: { slug: string } }) {
 
-  let data = await fetch('https://dummyjson.com/products');
+    let data = await fetch(`https://dummyjson.com/products/category/${params.slug}`);
   let response = await data.json()
   
   
   let apiCategories = await fetch('https://dummyjson.com/products/categories');
   let categories = await apiCategories.json()
-  console.log(categories)
+ 
   return (
     <>
       <SelectCategory categories={categories}/>
